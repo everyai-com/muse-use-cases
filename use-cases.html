@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="description"
+        content="The Muse field guide: 350+ real use cases with the exact prompt behind them, a Chief of Staff prompt that sets your agent up properly, and a capability pack you can hand over in one paste." >
+    <meta name="keywords"
+        content="Muse use cases, Muse field guide, Meta Muse, AI agent prompts, agent capabilities, Chief of Staff prompt, open source prompt library" >
+    <title>Muse Field Guide — use cases, prompts &amp; capability pack</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Azeret+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="use-cases.css" >
+    <link rel="icon" type="image/png"
+        href="https://res.cloudinary.com/dhar8ajns/image/upload/v1772261620/b6e4b2aa-4284-4a0d-9603-4bae72ffb715_gq7kqd.png">
+
+    <script>
+        (function () {
+            // Restore theme before first paint so nothing flashes.
+            var saved = localStorage.getItem('theme');
+            var dark = saved === 'dark' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (dark) document.documentElement.classList.add('dark');
+        })();
+    </script>
+</head>
+
+<body>
+    <script>
+        if (document.documentElement.classList.contains('dark')) document.body.classList.add('dark');
+    </script>
+
+    <!-- ── Nav ── -->
+    <header class="uc-nav" id="uc-nav">
+        <div class="uc-shell uc-nav-inner">
+            <a class="uc-brand" href="https://every-ai.com/">
+                <span class="uc-brand-mark">Every<span>AI</span></span>
+                <span class="uc-brand-sub">Muse field guide</span>
+            </a>
+
+            <nav class="uc-nav-links" aria-label="Sections">
+                <a href="#library">Library</a>
+                <a href="#chief-of-staff">Chief of Staff</a>
+                <a href="#give-to-muse">Hand it over</a>
+                <a href="#submit">Submit</a>
+                <a href="#open-source">Source</a>
+            </nav>
+
+            <div class="uc-nav-actions">
+                <button class="uc-theme" id="theme-toggle" type="button" aria-label="Toggle dark mode"
+                    aria-pressed="false">
+                    <span class="uc-theme-icon" data-theme-icon="light" aria-hidden="true">☀</span>
+                    <span class="uc-theme-icon" data-theme-icon="dark" aria-hidden="true">☾</span>
+                </button>
+                <a class="uc-btn uc-btn-primary uc-nav-cta" href="#give-to-muse">Give it to your Muse</a>
+                <button class="uc-burger" id="uc-burger" type="button" aria-label="Menu" aria-expanded="false"
+                    aria-controls="uc-mobile-nav">
+                    <span></span><span></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="uc-mobile-nav" id="uc-mobile-nav" hidden>
+            <a href="#library">Library</a>
+            <a href="#chief-of-staff">Chief of Staff</a>
+            <a href="#give-to-muse">Hand it over</a>
+            <a href="#submit">Submit a case</a>
+            <a href="#open-source">Open source</a>
+            <a href="https://every-ai.com/">every-ai.com</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ── Hero ── -->
+        <section class="uc-hero">
+            <div class="uc-shell">
+                <p class="uc-eyebrow uc-fade" style="--i:0">
+                    <span class="uc-live-dot" aria-hidden="true"></span>
+                    Muse field guide · updated by itself every 6 hours
+                </p>
+
+                <h1 class="uc-hero-title uc-fade" style="--i:1">
+                    Everything your <em>Muse</em><br>can do
+                </h1>
+
+                <p class="uc-hero-deck uc-fade" style="--i:2">
+                    A working library of what people actually run with Muse — <span data-count="cases">350+</span>
+                    real cases, <span data-count="prompts">250+</span> with the exact prompt behind them. Hand the
+                    whole thing over in one paste, or take the single prompt you need.
+                </p>
+
+                <div class="uc-hero-stats uc-fade" style="--i:3" id="counters-section">
+                    <div class="uc-stat">
+                        <strong class="stat-num" data-target="350" id="uc-stat-muse">0</strong>
+                        <span>Muse cases</span>
+                    </div>
+                    <div class="uc-stat">
+                        <strong class="stat-num" data-target="250" id="uc-stat-prompts">0</strong>
+                        <span>With the exact prompt</span>
+                    </div>
+                    <div class="uc-stat">
+                        <strong class="stat-num" data-target="14" id="uc-stat-cats">0</strong>
+                        <span>Categories</span>
+                    </div>
+                    <div class="uc-stat">
+                        <strong class="stat-num" data-target="12" id="uc-stat-loops">0</strong>
+                        <span>Reusable loops</span>
+                    </div>
+                </div>
+
+                <div class="uc-hero-search uc-fade" style="--i:4">
+                    <label class="uc-sr-only" for="uc-hero-search">Search use cases</label>
+                    <span class="uc-search-glyph" aria-hidden="true">⌕</span>
+                    <input id="uc-hero-search" type="search" autocomplete="off"
+                        placeholder="Refunds, flights, dashboards, school run…" >
+                    <button type="button" class="uc-btn uc-btn-ink" id="uc-hero-search-btn">Search</button>
+                </div>
+
+                <div class="uc-hero-tags uc-fade" style="--i:5" id="uc-hero-tags">
+                    <span class="uc-tag-label">Jump to</span>
+                    <button type="button" class="uc-chip" data-query="refund">Refunds</button>
+                    <button type="button" class="uc-chip" data-query="inbox">Inbox</button>
+                    <button type="button" class="uc-chip" data-query="flight">Travel</button>
+                    <button type="button" class="uc-chip" data-query="dashboard">Dashboards</button>
+                    <button type="button" class="uc-chip" data-query="insurance">Insurance</button>
+                    <button type="button" class="uc-chip" data-query="booking">Bookings</button>
+                </div>
+
+                <p class="uc-live-line" id="uc-updated" hidden></p>
+            </div>
+        </section>
+
+        <!-- ── 01 · Hand it over ── -->
+        <section class="uc-section uc-section-paper" id="give-to-muse" aria-labelledby="give-title">
+            <div class="uc-shell">
+                <header class="uc-section-head">
+                    <span class="uc-section-num">01</span>
+                    <h2 id="give-title">Hand it over</h2>
+                    <p>
+                        Your Muse knows none of this until you give it the pack. Paste one prompt and it loads every
+                        case, every prompt, the operating rules — then it can work from the whole list instead of
+                        waiting to be told.
+                    </p>
+                </header>
+
+                <div class="uc-steps">
+                    <article class="uc-step">
+                        <span class="uc-step-num">1</span>
+                        <h3>Copy the setup prompt</h3>
+                        <p>It points your Muse at the pack and says exactly what to do with it.</p>
+                    </article>
+                    <article class="uc-step">
+                        <span class="uc-step-num">2</span>
+                        <h3>Paste it into Muse</h3>
+                        <p>Any session works. It reads the pack, then comes back with what it can do for you.</p>
+                    </article>
+                    <article class="uc-step">
+                        <span class="uc-step-num">3</span>
+                        <h3>Ask for anything</h3>
+                        <p>It matches your request to the closest case and runs it end to end, pausing only where
+                            your approval matters.</p>
+                    </article>
+                </div>
+
+                <div class="uc-panel">
+                    <div class="uc-panel-head">
+                        <span class="uc-label">The setup prompt</span>
+                        <span class="uc-panel-note">This is exactly what gets copied</span>
+                    </div>
+                    <pre class="uc-pre" id="uc-setup-prompt">Loading…</pre>
+                    <div class="uc-actions">
+                        <button type="button" class="uc-btn uc-btn-primary" id="uc-copy-setup">Copy setup
+                            prompt</button>
+                        <a class="uc-btn uc-btn-ghost" id="uc-download-pack-md" href="#" rel="noopener">Download the
+                            pack</a>
+                        <a class="uc-btn uc-btn-quiet" id="uc-view-pack" href="#" target="_blank" rel="noopener">Read it
+                            first →</a>
+                    </div>
+                </div>
+
+                <ul class="uc-knows">
+                    <li><strong>What it knows after:</strong></li>
+                    <li>every case, by category, with the prompt that ran it</li>
+                    <li>how to run one: match → ask once → execute → verify</li>
+                    <li>the six guardrails and the twelve loops</li>
+                    <li>what it must stop and ask you about</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ── 02 · Chief of Staff ── -->
+        <section class="uc-section" id="chief-of-staff" aria-labelledby="chief-title">
+            <div class="uc-shell">
+                <header class="uc-section-head">
+                    <span class="uc-section-num">02</span>
+                    <h2 id="chief-title">Start here: the Chief of Staff prompt</h2>
+                    <p>
+                        If you're trying out <strong>@muse</strong>, <strong>@bot</strong> or any other personal
+                        assistant, the best first move is to connect the accounts you want it to reach — calendar,
+                        and email too if you yolo like me. Then paste this. It sets up the entire working
+                        relationship: what it learns, what it remembers, and what it must ask you before doing.
+                    </p>
+                </header>
+
+                <div class="uc-panel uc-panel-accent">
+                    <div class="uc-panel-head">
+                        <span class="uc-label">Chief of Staff</span>
+                        <span class="uc-panel-note">Onboarding · memory · weekly review</span>
+                    </div>
+                    <pre class="uc-pre uc-pre-tall" id="uc-chief-text">Loading…</pre>
+                    <div class="uc-actions">
+                        <button type="button" class="uc-btn uc-btn-primary" id="uc-copy-chief">Copy the prompt</button>
+                        <a class="uc-btn uc-btn-ghost" id="uc-download-chief" href="#" rel="noopener">Download
+                            (.txt)</a>
+                    </div>
+                </div>
+
+                <div class="uc-note-grid">
+                    <article class="uc-note">
+                        <h3>What it does first</h3>
+                        <p>Checks which integrations are connected, reads the last 90 days of mail and calendar, then
+                            briefs you on what it found — separating facts, guesses and gaps.</p>
+                    </article>
+                    <article class="uc-note">
+                        <h3>How it learns</h3>
+                        <p>Keeps durable memory of your people, preferences and delegation rules, and runs a weekly
+                            self-review so it stops repeating the same miss.</p>
+                    </article>
+                    <article class="uc-note">
+                        <h3>Where it stops</h3>
+                        <p>No messages, events or commitments on your behalf during onboarding. Afterwards it acts
+                            inside the boundaries you two agree.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 03 · Library ── -->
+        <section class="uc-section uc-section-paper" id="library" aria-labelledby="library-title">
+            <div class="uc-shell">
+                <header class="uc-section-head">
+                    <span class="uc-section-num">03</span>
+                    <h2 id="library-title">The library</h2>
+                    <p>
+                        Every case below is real — pulled from the field guide, a crowd feed and cases people sent in,
+                        then merged and de-duplicated on a schedule. Copy one prompt, or take the lot via the pack.
+                        Community bot prompts from botdirectory.ai live in the Bots tab.
+                    </p>
+                </header>
+
+                <div class="uc-controls">
+                    <div class="uc-tabs" id="uc-source-switch" role="tablist" aria-label="Case source">
+                        <button class="uc-tab is-active" data-source="muse" role="tab" aria-selected="true">
+                            Muse <span class="uc-tab-count" data-count="muse">350</span>
+                        </button>
+                        <button class="uc-tab" data-source="bot" role="tab" aria-selected="false">
+                            Bots <span class="uc-tab-count" data-count="bot">650</span>
+                        </button>
+                        <button class="uc-tab" data-source="all" role="tab" aria-selected="false">
+                            Everything <span class="uc-tab-count" data-count="all">1000</span>
+                        </button>
+                    </div>
+
+                    <div class="uc-search-row">
+                        <label class="uc-sr-only" for="uc-search">Search the library</label>
+                        <span class="uc-search-glyph" aria-hidden="true">⌕</span>
+                        <input type="search" id="uc-search" class="uc-input" autocomplete="off"
+                            placeholder="Search refunds, flights, invoices, hiring…" >
+                        <button class="uc-clear" id="uc-search-clear" type="button" aria-label="Clear search" hidden>Clear</button>
+                    </div>
+
+                    <div class="uc-filter-block">
+                        <span class="uc-label">Category</span>
+                        <div class="uc-chip-row" id="uc-category-chips"></div>
+                    </div>
+
+                    <div class="uc-filter-block" id="uc-integration-group" hidden>
+                        <span class="uc-label">Works with</span>
+                        <div class="uc-chip-row" id="uc-integration-chips"></div>
+                    </div>
+
+                    <div class="uc-toolbar">
+                        <p class="uc-count" id="uc-result-count">Loading the library…</p>
+                        <div class="uc-toolbar-actions">
+                            <button class="uc-btn uc-btn-quiet" id="uc-reset" type="button" hidden>Clear filters</button>
+                            <label class="uc-sr-only" for="uc-sort">Sort cases</label>
+                            <select id="uc-sort" class="uc-select">
+                                <option value="curated">Curated order</option>
+                                <option value="newest">Newest first</option>
+                                <option value="az">A–Z</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="uc-grid" id="uc-grid" aria-live="polite"></div>
+                <div id="uc-pagination"></div>
+                <p class="uc-source-note" id="uc-source-note" hidden></p>
+
+                <noscript>
+                    <p class="uc-source-note">
+                        The library needs JavaScript. You can also read the sources directly:
+                        <a href="https://botdirectory.ai" target="_blank" rel="noopener">botdirectory.ai</a> and the
+                        <a href="https://muse.ai/s/muse-use-cases-xuxf6fkdeq4oxw" target="_blank" rel="noopener">Muse
+                            field guide</a>.
+                    </p>
+                </noscript>
+            </div>
+        </section>
+
+        <!-- ── 04 · Running a case ── -->
+        <section class="uc-section" id="running" aria-labelledby="running-title">
+            <div class="uc-shell uc-split">
+                <div>
+                    <header class="uc-section-head uc-section-head-left">
+                        <span class="uc-section-num">04</span>
+                        <h2 id="running-title">Taking one case instead</h2>
+                        <p>
+                            You don't have to hand over the whole pack. Every card carries the exact prompt that ran
+                            the job — copy it, swap the <code>[bracketed]</code> details for yours, send it.
+                        </p>
+                    </header>
+                    <ol class="uc-numbered">
+                        <li>Filter to the job you want done — or search for it.</li>
+                        <li>Hit <em>Copy prompt</em> on the card.</li>
+                        <li>Replace anything in <code>[square brackets]</code>.</li>
+                        <li>Paste it in. Muse asks for what's still missing, then runs it.</li>
+                    </ol>
+                </div>
+
+                <div class="uc-panel">
+                    <div class="uc-panel-head">
+                        <span class="uc-label">Master prompt wrapper</span>
+                        <span class="uc-panel-note">Optional, but it sharpens every case</span>
+                    </div>
+                    <pre class="uc-pre" id="uc-master-text"></pre>
+                    <div class="uc-actions">
+                        <button type="button" class="uc-btn uc-btn-primary" id="uc-copy-master">Copy wrapper</button>
+                        <button type="button" class="uc-btn uc-btn-ghost" id="uc-download-pack">Download all
+                            prompts</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 05 · Loops ── -->
+        <section class="uc-section uc-section-ink" id="loops" aria-labelledby="loops-title">
+            <div class="uc-shell">
+                <header class="uc-section-head">
+                    <span class="uc-section-num">05</span>
+                    <h2 id="loops-title">The twelve loops</h2>
+                    <p>Most "new" use cases are combinations of these shapes. Compose them and you can invent cases
+                        that aren't in the library yet.</p>
+                </header>
+                <div class="uc-loop-grid" id="uc-patterns"></div>
+            </div>
+        </section>
+
+        <!-- ── 06 · Guardrails ── -->
+        <section class="uc-section" id="guardrails" aria-labelledby="guardrails-title">
+            <div class="uc-shell">
+                <header class="uc-section-head">
+                    <span class="uc-section-num">06</span>
+                    <h2 id="guardrails-title">Guardrails worth writing in</h2>
+                    <p>Caveats that showed up again and again in hands-on reports. Put them in the prompt before you
+                        hand over anything important.</p>
+                </header>
+                <div class="uc-guard-grid" id="uc-guardrails"></div>
+            </div>
+        </section>
+
+        <!-- ── 07 · Submit ── -->
+        <section class="uc-section uc-section-paper" id="submit" aria-labelledby="submit-title">
+            <div class="uc-shell uc-split">
+                <div>
+                    <header class="uc-section-head uc-section-head-left">
+                        <span class="uc-section-num">07</span>
+                        <h2 id="submit-title">Send in your case</h2>
+                        <p>
+                            Ran something good? Send it in. Reviewed cases land in the library and in the capability
+                            pack on the next sync — with your handle on it if you want the credit.
+                        </p>
+                    </header>
+                    <ul class="uc-bullets">
+                        <li><strong>What counts:</strong> something you actually ran, not a hypothetical.</li>
+                        <li><strong>The prompt:</strong> paste it verbatim if you have it. No prompt? Describe it and
+                            link the post.</li>
+                        <li><strong>Review:</strong> every submission is read before it ships. Spam isn't.</li>
+                        <li><strong>Credits:</strong> add a handle or link and it stays attached.</li>
+                    </ul>
+                    <p class="uc-fine">
+                        Prefer git? The library and the worker are open source —
+                        <a href="#open-source">send a pull request instead</a>.
+                    </p>
+                </div>
+
+                <form class="uc-form" id="uc-submit-form" novalidate>
+                    <div class="uc-field">
+                        <label for="uc-sub-title">What is the case called?</label>
+                        <input id="uc-sub-title" name="title" type="text" required maxlength="120"
+                            placeholder="Refund a train ticket after a missed connection" >
+                    </div>
+
+                    <div class="uc-field-row">
+                        <div class="uc-field">
+                            <label for="uc-sub-category">Category</label>
+                            <input id="uc-sub-category" name="category" type="text" required maxlength="40"
+                                list="uc-category-list" placeholder="Travel" >
+                            <datalist id="uc-category-list">
+                                <option value="Money"></option>
+                                <option value="Admin"></option>
+                                <option value="Travel"></option>
+                                <option value="Work"></option>
+                                <option value="Shopping"></option>
+                                <option value="Family"></option>
+                                <option value="Food"></option>
+                                <option value="Fun"></option>
+                                <option value="Health"></option>
+                                <option value="Home"></option>
+                                <option value="Integrations"></option>
+                            </datalist>
+                        </div>
+                        <div class="uc-field">
+                            <label for="uc-sub-handle">Credit <span class="uc-optional">optional</span></label>
+                            <input id="uc-sub-handle" name="handle" type="text" maxlength="60" placeholder="@yourhandle" >
+                        </div>
+                    </div>
+
+                    <div class="uc-field">
+                        <label for="uc-sub-description">What did it do?</label>
+                        <textarea id="uc-sub-description" name="description" rows="4" required maxlength="1200"
+                            placeholder="Missed a connection, asked Muse to sort it, it rebooked and got the fare refunded the same afternoon."></textarea>
+                    </div>
+
+                    <div class="uc-field">
+                        <label for="uc-sub-prompt">The prompt <span class="uc-optional">optional, but this is the
+                                gold</span></label>
+                        <textarea id="uc-sub-prompt" name="prompt" rows="5" maxlength="6000"
+                            placeholder="I missed my connection on [route]. Get the fare refunded and rebook me on the next service."></textarea>
+                    </div>
+
+                    <div class="uc-field">
+                        <label for="uc-sub-source">Link to the post or thread <span
+                                class="uc-optional">optional</span></label>
+                        <input id="uc-sub-source" name="sourceUrl" type="url" maxlength="400"
+                            placeholder="https://x.com/you/status/…" >
+                    </div>
+
+                    <div class="uc-hidden-field" aria-hidden="true">
+                        <label for="uc-sub-website">Website</label>
+                        <input id="uc-sub-website" name="website" type="text" tabindex="-1" autocomplete="off" >
+                    </div>
+
+                    <div class="uc-actions uc-actions-wide">
+                        <button type="submit" class="uc-btn uc-btn-primary uc-btn-lg" id="uc-submit-btn">Send it
+                            in</button>
+                        <span class="uc-form-status" id="uc-submit-status" role="status" aria-live="polite"></span>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ── 08 · Open source ── -->
+        <section class="uc-section uc-section-ink" id="open-source" aria-labelledby="oss-title">
+            <div class="uc-shell">
+                <header class="uc-section-head">
+                    <span class="uc-section-num">08</span>
+                    <h2 id="oss-title">Open source, end to end</h2>
+                    <p>The page, the sync worker and the capability pack are MIT licensed. Fork it, run your own
+                        instance, point it at your own sources — or send a case in as a pull request.</p>
+                </header>
+
+                <div class="uc-oss-grid">
+                    <a class="uc-oss-card" href="https://github.com/everyai-com/muse-use-cases" target="_blank"
+                        rel="noopener">
+                        <span class="uc-label">Repository</span>
+                        <h3>everyai-com/muse-use-cases</h3>
+                        <p>Worker, page, build scripts and docs. One command to deploy your own.</p>
+                        <span class="uc-card-link">github.com →</span>
+                    </a>
+                    <a class="uc-oss-card" href="https://github.com/everyai-com/muse-use-cases/blob/main/LICENSE"
+                        target="_blank" rel="noopener">
+                        <span class="uc-label">License</span>
+                        <h3>MIT</h3>
+                        <p>Use it, fork it, ship it commercially. Attribution appreciated, not required.</p>
+                        <span class="uc-card-link">Read the license →</span>
+                    </a>
+                    <a class="uc-oss-card" href="https://everyai-use-cases.everyai-com.workers.dev/" target="_blank"
+                        rel="noopener">
+                        <span class="uc-label">Public API</span>
+                        <h3>Read the whole library</h3>
+                        <p><code>/api/use-cases</code> for JSON, <code>/muse/capabilities.md</code> for the pack.</p>
+                        <span class="uc-card-link">API root →</span>
+                    </a>
+                    <a class="uc-oss-card" href="https://github.com/everyai-com/muse-use-cases/blob/main/CONTRIBUTING.md"
+                        target="_blank" rel="noopener">
+                        <span class="uc-label">Contributing</span>
+                        <h3>Send a case by PR</h3>
+                        <p>Add the case, run the build, open the pull request. Reviewed like any other.</p>
+                        <span class="uc-card-link">How to contribute →</span>
+                    </a>
+                </div>
+
+                <div class="uc-terminal">
+                    <div class="uc-terminal-bar"><span></span><span></span><span></span>
+                        <em>deploy your own</em>
+                    </div>
+                    <pre class="uc-terminal-body">git clone https://github.com/everyai-com/muse-use-cases
+cd muse-use-cases/worker &amp;&amp; wrangler deploy
+node scripts/build-muse-site.mjs &amp;&amp; wrangler pages deploy dist/muse</pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 09 · Sources ── -->
+        <section class="uc-section uc-section-paper" id="sources" aria-labelledby="sources-title">
+            <div class="uc-shell">
+                <header class="uc-section-head">
+                    <span class="uc-section-num">09</span>
+                    <h2 id="sources-title">Where all of this comes from</h2>
+                    <p>Nothing here is invented. Every case traces back to a post, a guide or a person.</p>
+                </header>
+
+                <div class="uc-source-grid">
+                    <a class="uc-source-card" href="https://muse.ai/s/muse-use-cases-xuxf6fkdeq4oxw" target="_blank"
+                        rel="noopener">
+                        <span class="uc-tag uc-tag-muse">Field guide</span>
+                        <h3>Muse use cases</h3>
+                        <p>Collected from public posts on X, Threads, Instagram and Hacker News. Re-read live on every
+                            sync, so new cases land here without anyone touching the site.</p>
+                        <span class="uc-card-link">muse.ai →</span>
+                    </a>
+                    <a class="uc-source-card" href="https://musecases.netlify.app" target="_blank" rel="noopener">
+                        <span class="uc-tag uc-tag-crowd">Crowd feed</span>
+                        <h3>musecases.netlify.app</h3>
+                        <p>A continuously refreshed feed of Muse cases spotted on X. These arrive as descriptions —
+                            cards without a published prompt link straight to the post.</p>
+                        <span class="uc-card-link">musecases →</span>
+                    </a>
+                    <a class="uc-source-card" href="https://botdirectory.ai" target="_blank" rel="noopener">
+                        <span class="uc-tag uc-tag-bot">Bots</span>
+                        <h3>botdirectory.ai</h3>
+                        <p>An open, MIT-licensed directory of agent prompts for Grok Bot, Rakazo and anything else.
+                            Queried live in the Bots tab.</p>
+                        <span class="uc-card-link">botdirectory →</span>
+                    </a>
+                    <a class="uc-source-card" href="#submit">
+                        <span class="uc-tag uc-tag-community">Community</span>
+                        <h3>Sent in by readers</h3>
+                        <p>Cases submitted through the form or a pull request, reviewed before they ship, credited to
+                            whoever sent them.</p>
+                        <span class="uc-card-link">Add yours →</span>
+                    </a>
+                </div>
+
+                <div class="uc-status" id="uc-status-panel">
+                    <div class="uc-status-head">
+                        <span class="uc-label">How it stays fresh</span>
+                        <span class="uc-panel-note" id="uc-status-when">—</span>
+                    </div>
+                    <dl class="uc-status-grid" id="uc-status-grid">
+                        <div><dt>Field guide</dt><dd id="uc-source-guide">—</dd></div>
+                        <div><dt>Crowd feed</dt><dd id="uc-source-crowd">—</dd></div>
+                        <div><dt>Community</dt><dd id="uc-source-community">—</dd></div>
+                        <div><dt>Exa discovery</dt><dd id="uc-source-exa">—</dd></div>
+                    </dl>
+                </div>
+
+                <p class="uc-disclaimer">
+                    Prompts are community- and user-generated and unverified. They're starting points, not
+                    guarantees — read one before you run it, keep payments and account changes under your own
+                    approval, and be clear about what your agent may read, send or buy. Some newer cases arrive
+                    before they have a published prompt; those are marked and link to the original post.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ── Footer ── -->
+    <footer class="uc-footer">
+        <div class="uc-shell uc-footer-inner">
+            <div>
+                <span class="uc-brand-mark">Every<span>AI</span></span>
+                <p>Muse field guide · a working library of what agents actually do.</p>
+            </div>
+            <nav aria-label="Footer">
+                <a href="#library">Library</a>
+                <a href="#chief-of-staff">Chief of Staff</a>
+                <a href="#submit">Submit a case</a>
+                <a href="#open-source">Open source</a>
+                <a href="https://every-ai.com/">every-ai.com</a>
+            </nav>
+            <p class="uc-footer-fine">
+                MIT licensed. Not affiliated with Meta. Built from public posts, credited case by case.
+            </p>
+        </div>
+    </footer>
+
+    <div class="uc-toast" id="uc-toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="use-cases.js"></script>
+</body>
+
+</html>

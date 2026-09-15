@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "everyai-use-cases",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-11",
+  "workers_dev": true,
+
+  // Merged use-case library (field guide + crowd feed + optional Exa).
+  // The cron below refreshes it; /api/use-cases serves it.
+  "kv_namespaces": [
+    {
+      "binding": "USE_CASES",
+      "id": "0ab1a46e8c3842ab94653377ad56c67b"
+    }
+  ],
+
+  // Re-sync every 6 hours. New cases are live on the next page load —
+  // no redeploy of the static site needed.
+  "triggers": {
+    "crons": ["0 */6 * * *"]
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}
